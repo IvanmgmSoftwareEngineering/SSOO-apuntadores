@@ -68,25 +68,132 @@ printf("ptr + %d         = %d     <-- D \n", i, *(++ptr)); /*<-- D */
 void programa31(void)
 {
 	char strA[80] = "Cadena a usar para el programa de ejemplo";
-	char strB[80];
+	char strB[80] = "12345678901234567890123456789012345678901234567890";
 	char *pA; /* un apuntador al tipo caracter */
 	char *pB; /* otro apuntador al tipo caracter */
+	char i,j;
+
+	putchar('\n'); /* dejamos una línea en blanco */
+	printf("----INICIO----");
+	putchar('\n'); /* dejamos una línea en blanco */
+
+	printf("inicio) Mostrando lo que tiene la cadena strA:                    ");
 	puts(strA);/* muestra la cadena strA */
 	pA = strA; /* apunta pA a la cadena strA */
-	puts(pA);/* muestra a donde apunta pA */
-	pB = strB; /* apunta pB a la cadena strB */
+	printf("inicio) Mostrando el contenido de a donde apunta el apuntador pA: ");
+	puts(pA);/* muestra el contenido de a donde apunta pA */
+	printf("inicio) Mostrando a donde apunta el apuntador pA:                 ");
+	printf("%p\n",(void *)&pA);/* muestra a donde apunta pA */
 
 	putchar('\n'); /* dejamos una línea en blanco */
 
-	while(*pA != '\0') {/* linea A (“Mientras el caracter apuntado por pA ( es decir: *pA) no sea un caracter nul (el que es ‘\0’),
-haz lo siguiente”) */
-		*pB++ = *pA++;/* linea B (“copia el caracter apuntado por pA (es decir *pA) al espacio al que apunta pB, luego incrementa pA de tal manera que apunte al siguiente caracter, de igual modo incrementa pB de manera que apunte al siguiente espacio”) */
+	printf("inicio) Mostrando lo que tiene la cadena strB al principio:       ");
+	puts(strB);/* muestra la cadena strA */
+	pB = strB; /* apunta pB a la cadena strB */
+	printf("inicio) Mostrando el contenido de a donde apunta el apuntador pB: ");
+	puts(pB);/* muestra el contenido de a donde apunta pB */
+	printf("inicio) Mostrando a donde apunta el apuntador pB:                 ");
+	printf("%p\n",(void *)&pB);/* muestra a donde apunta pB */
+
+
+	putchar('\n'); /* dejamos una línea en blanco */
+	printf(" BUCLE) Mostrando a donde apunta el apuntador pA y pB durante el bucle:                 ");
+	putchar('\n'); /* dejamos una línea en blanco */
+
+
+	i = 0;
+	while(*pA != '\0') {// linea A (“Mientras el caracter apuntado por pA ( es decir: *pA) no sea un caracter nul (el que es ‘\0’),haz lo siguiente”)
+		*pB++ = *pA++;// linea B (“copia el caracter apuntado por pA (es decir *pA) al espacio al que apunta pB, luego incrementa pA de tal manera que apunte al siguiente caracter, de igual modo incrementa pB de manera que apunte al siguiente espacio”)
+		printf("Iteración %d \n",i);
+				printf("-- pA apunta a la dirección de memoria: %p \n",(void *)&pA);
+				printf("-- en la dirección a la que apunta pA está almacenado el valor: %c \n",*pA);
+				printf("-- pB apunta a la dirección de memoria %p \n",(void *)&pB);
+				printf("-- en la dirección a la que apunta pB está almacenado el valor: %c \n",*pB);
+		i++;
 	}
 
-	*pB = '\0'; /* linea C (por definición: una cadena en C debe terminar en un caracter nul. Así que agregamos nul con la línea C) */
+	*pB = '\0'; // linea C (por definición: una cadena en C debe terminar en un caracter nul. Así que agregamos nul con la línea C)
+
+
+
+/*
+
+	j=0;
+	while(strA[j] != '\0'){
+		strB[j]=strA[j];
+		printf("Iteración %d \n",j+1);
+		printf("-- strA[%d] apunta a la dirección de memoria %p \n",j+1,(void *)&strA[j]);
+		printf("-- strA[%d] = %c \n",j+1,strA[j]);
+		printf("-- strB[%d] apunta a la dirección de memoria %p \n",j+1,(void *)&strB[j]);
+		printf("-- strB[%d] = %c \n",j+1,strB[j]);
+		j++;
+	}
+
+	strB[j]='\0';
+
+*/
+
+
+
+
+	putchar('\n'); /* dejamos una línea en blanco */
+	printf("----FINAL----");
+	putchar('\n'); /* dejamos una línea en blanco */
+
+	printf(" final) Mostrando lo que tiene la cadena strA:                    ");
+	puts(strA);/* muestra la cadena strA */
+	printf(" final) Mostrando el contenido de a donde apunta el apuntador pA: ");
+	puts(pA);/* muestra el contenido de a donde apunta pA */
+	printf(" final) Mostrando a donde apunta el apuntador pA:                 ");
+	printf("%p\n",(void *)&pA);/* muestra a donde apunta pA */
+
+	putchar('\n'); /* dejamos una línea en blanco */
+
+	printf(" final) Mostrando lo que tiene la cadena strB:                    ");
 	puts(strB); /* muestra strB en la pantalla */
+	printf(" final) Mostrando el contenido de a donde apunta el apuntador pB: ");
+	puts(pB);/* muestra el contenido de a donde apunta pB */
+	printf(" final) Mostrando a donde apunta el apuntador pB:                 ");
+	printf("%p\n",(void *)&pB);/* muestra a donde apunta pB */
 
 
 
 }
+
+
+
+	char *mi_strcpy1 (char *fuente, char *destino)
+	{
+
+		char *p = destino;
+		while (*fuente != '\0'){
+			*p++ = *fuente++;
+		}
+		*p = '\0';
+		return destino;
+	}
+
+	char *mi_strcpy2 (char *fuente, char *destino)
+		{
+
+			while (*fuente != '\0'){
+
+				*destino++ = *fuente++;
+			}
+			*destino = '\0';
+			return destino;
+		}
+
+
+	void programa32 (void){
+
+		char fuentePrueba [80] = "0123456789";
+		char destinoPrueba1 [80];
+		char destinoPrueba2 [80];
+		destinoPrueba1 [80] = mi_strcpy1(fuentePrueba,destinoPrueba1);
+		puts(destinoPrueba1);
+		destinoPrueba2 [80] = mi_strcpy1(fuentePrueba,destinoPrueba2);
+		puts(destinoPrueba2);
+	}
+
 
