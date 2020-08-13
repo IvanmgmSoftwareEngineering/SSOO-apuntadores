@@ -7,6 +7,7 @@
 
 
 #include <stdio.h>
+#include "libreria.h"
 void ejemplo1 (void){
 
     //Ejemplo 1: muestra el tamaño de las variables

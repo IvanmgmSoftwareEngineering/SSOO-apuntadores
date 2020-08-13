@@ -11,6 +11,6 @@
 void ejemplo1(void);
 void programa11(void);
 void programa21(void);
-
+void programa31(void);
 
 #endif /* LIBRERIA_H_ */
