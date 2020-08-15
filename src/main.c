@@ -25,8 +25,10 @@ int main(void)
     //ejemplo1();
     //programa11();
     //programa21();
-	programa31();
+	//programa31();
 	//programa32();
+	programa33();
+
 
     return 0;
 }

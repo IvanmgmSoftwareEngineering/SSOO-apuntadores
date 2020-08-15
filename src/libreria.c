@@ -83,7 +83,7 @@ void programa31(void)
 	printf("inicio) Mostrando el contenido de a donde apunta el apuntador pA: ");
 	puts(pA);/* muestra el contenido de a donde apunta pA */
 	printf("inicio) Mostrando a donde apunta el apuntador pA:                 ");
-	printf("%p\n",(void *)&pA);/* muestra a donde apunta pA */
+	printf("%p\n",(void *)pA);/* muestra a donde apunta pA */
 
 	putchar('\n'); /* dejamos una línea en blanco */
 
@@ -93,7 +93,7 @@ void programa31(void)
 	printf("inicio) Mostrando el contenido de a donde apunta el apuntador pB: ");
 	puts(pB);/* muestra el contenido de a donde apunta pB */
 	printf("inicio) Mostrando a donde apunta el apuntador pB:                 ");
-	printf("%p\n",(void *)&pB);/* muestra a donde apunta pB */
+	printf("%p\n",(void *)pB);/* muestra a donde apunta pB */
 
 
 	putchar('\n'); /* dejamos una línea en blanco */
@@ -104,10 +104,10 @@ void programa31(void)
 	i = 0;
 	while(*pA != '\0') {// linea A (“Mientras el caracter apuntado por pA ( es decir: *pA) no sea un caracter nul (el que es ‘\0’),haz lo siguiente”)
 		*pB++ = *pA++;// linea B (“copia el caracter apuntado por pA (es decir *pA) al espacio al que apunta pB, luego incrementa pA de tal manera que apunte al siguiente caracter, de igual modo incrementa pB de manera que apunte al siguiente espacio”)
-		printf("Iteración %d \n",i);
-				printf("-- pA apunta a la dirección de memoria: %p \n",(void *)&pA);
+		printf("Iteración %d \n",i+1);
+				printf("-- pA apunta a la dirección de memoria: %p \n",(void *)pA);
 				printf("-- en la dirección a la que apunta pA está almacenado el valor: %c \n",*pA);
-				printf("-- pB apunta a la dirección de memoria %p \n",(void *)&pB);
+				printf("-- pB apunta a la dirección de memoria %p \n",(void *)pB);
 				printf("-- en la dirección a la que apunta pB está almacenado el valor: %c \n",*pB);
 		i++;
 	}
@@ -145,7 +145,7 @@ void programa31(void)
 	printf(" final) Mostrando el contenido de a donde apunta el apuntador pA: ");
 	puts(pA);/* muestra el contenido de a donde apunta pA */
 	printf(" final) Mostrando a donde apunta el apuntador pA:                 ");
-	printf("%p\n",(void *)&pA);/* muestra a donde apunta pA */
+	printf("%p\n",(void *)pA);/* muestra a donde apunta pA */
 
 	putchar('\n'); /* dejamos una línea en blanco */
 
@@ -154,7 +154,7 @@ void programa31(void)
 	printf(" final) Mostrando el contenido de a donde apunta el apuntador pB: ");
 	puts(pB);/* muestra el contenido de a donde apunta pB */
 	printf(" final) Mostrando a donde apunta el apuntador pB:                 ");
-	printf("%p\n",(void *)&pB);/* muestra a donde apunta pB */
+	printf("%p\n",(void *)pB);/* muestra a donde apunta pB */
 
 
 
@@ -162,23 +162,52 @@ void programa31(void)
 
 
 
-	char *mi_strcpy1 (char *fuente, char *destino)
+	char *mi_strcpy1 (const char *fuente, char *destino)
 	{
-
+		printf("\n");
+		printf("Función mi_strcopy1\n");
+		printf("\n");
+		int i = 1;
 		char *p = destino;
 		while (*fuente != '\0'){
+			printf("Itaración %u\n", i);
+			printf("\n");
+			printf("-- Mostrando donde apunta el apuntador p: \n");
+			printf("     Dirección: %p     Contenido: %c\n",(void *)p, *p);/* muestra a donde apunta p */
+			printf("\n");
+			printf("-- Mostrando donde apunta el apuntador destino y su contenido: \n");
+			printf("     Dirección: %p     Contenido: %c\n",(void *)destino,*destino);/* muestra a donde apunta destino y su contenido */
+			printf("\n");
+			printf("-- Mostrando donde apunta el apuntador fuente: \n");
+			printf("     Dirección: %p     Contenido: %c\n",(void *)fuente,*fuente);/* muestra a donde apunta fuente y su contendio */
+			printf("\n");
+
 			*p++ = *fuente++;
+			i++;
 		}
 		*p = '\0';
 		return destino;
 	}
 
-	char *mi_strcpy2 (char *fuente, char *destino)
+	char *mi_strcpy2 (const char *fuente, char *destino)
 		{
-
+			printf("\n");
+			printf("Función mi_strcopy2\n");
+			printf("\n");
+			int i = 1;
 			while (*fuente != '\0'){
-
+				printf("Itaración %u\n", i);
+				printf("\n");
+				printf("\n");
+				printf("-- Mostrando donde apunta el apuntador destino y su contenido: \n");
+				printf("     Dirección: %p     Contenido: %c\n",(void *)destino,*destino);/* muestra a donde apunta destino y su contenido */
+				printf("\n");
+				printf("-- Mostrando donde apunta el apuntador fuente: \n");
+				printf("     Dirección: %p     Contenido: %c\n",(void *)fuente,*fuente);/* muestra a donde apunta fuente y su contendio */
+				printf("\n");
 				*destino++ = *fuente++;
+
+				i++;
 			}
 			*destino = '\0';
 			return destino;
@@ -190,10 +219,26 @@ void programa31(void)
 		char fuentePrueba [80] = "0123456789";
 		char destinoPrueba1 [80];
 		char destinoPrueba2 [80];
-		destinoPrueba1 [80] = mi_strcpy1(fuentePrueba,destinoPrueba1);
+		char destinoPrueba3 [80];
+		mi_strcpy1(fuentePrueba,destinoPrueba1);
 		puts(destinoPrueba1);
-		destinoPrueba2 [80] = mi_strcpy1(fuentePrueba,destinoPrueba2);
+		mi_strcpy1(fuentePrueba,destinoPrueba2);
 		puts(destinoPrueba2);
+		mi_strcpy1(fuentePrueba,destinoPrueba3);
+		puts(destinoPrueba3);
 	}
 
+	void programa33 (void){
+
+			char fuentePrueba [80] = "0123456789";
+			char destinoPrueba1 [80];
+			char destinoPrueba2 [80];
+			char destinoPrueba3 [80];
+			mi_strcpy2(fuentePrueba,destinoPrueba1);
+			puts(destinoPrueba1);
+			mi_strcpy2(fuentePrueba,destinoPrueba2);
+			puts(destinoPrueba2);
+			mi_strcpy2(fuentePrueba,destinoPrueba3);
+			puts(destinoPrueba3);
+		}
 

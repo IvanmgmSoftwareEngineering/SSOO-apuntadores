@@ -12,9 +12,10 @@ void ejemplo1(void);
 void programa11(void);
 void programa21(void);
 void programa31(void);
-char *mi_strcpy1 (char *fuente, char *destino);
-char *mi_strcpy2 (char *fuente, char *destino);
+char *mi_strcpy1 (const char *fuente, char *destino);
+char *mi_strcpy2 (const char *fuente, char *destino);
 void programa32(void);
+void programa33(void);
 
 
 #endif /* LIBRERIA_H_ */
