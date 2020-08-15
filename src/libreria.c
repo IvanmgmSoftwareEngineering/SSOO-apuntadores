@@ -170,7 +170,7 @@ void programa31(void)
 		int i = 1;
 		char *p = destino;
 		while (*fuente != '\0'){
-			printf("Itaración %u\n", i);
+			printf("Iteración %u\n", i);
 			printf("\n");
 			printf("-- Mostrando donde apunta el apuntador p: \n");
 			printf("     Dirección: %p     Contenido: %c\n",(void *)p, *p);/* muestra a donde apunta p */
@@ -196,7 +196,7 @@ void programa31(void)
 			printf("\n");
 			int i = 1;
 			while (*fuente != '\0'){
-				printf("Itaración %u\n", i);
+				printf("Iteración %u\n", i);
 				printf("\n");
 				printf("\n");
 				printf("-- Mostrando donde apunta el apuntador destino y su contenido: \n");
@@ -241,4 +241,60 @@ void programa31(void)
 			mi_strcpy2(fuentePrueba,destinoPrueba3);
 			puts(destinoPrueba3);
 		}
+
+	int *int_copy1 (const int *fuente, int *destino, int nbr){
+		printf("\n");
+		printf("Función int_copy1\n");
+		printf("\n");
+		int i = 1;
+		while (i<nbr){
+			*destino++ = *fuente++;
+			i++;
+		}
+		return destino;
+	}
+
+	int *int_copy2 (const int *fuente, int *destino){
+			printf("\n");
+			printf("Función int_copy2\n");
+			printf("\n");
+			int i = 1;
+			while (*fuente != -1){
+				printf("Iteración %u\n", i);
+				printf("\n");
+				printf("\n");
+				printf("-- Mostrando donde apunta el apuntador destino y su contenido: \n");
+				printf("     Dirección: %p     Contenido: %u\n",(void *)destino,*destino);/* muestra a donde apunta destino y su contenido */
+				printf("\n");
+				printf("-- Mostrando donde apunta el apuntador fuente: \n");
+				printf("     Dirección: %p     Contenido: %u\n",(void *)fuente,*fuente);/* muestra a donde apunta fuente y su contendio */
+				printf("\n");
+				*destino++ = *fuente++;
+				i++;
+			}
+			*destino = -1;
+			return destino;
+		}
+
+	void programa34 (void){
+
+
+	}
+
+	void programa35 (void){
+		int fuentePrueba [80] = {1,2,3,4,-1};
+		int destinoPrueba [80];
+		int_copy2(fuentePrueba, destinoPrueba);
+		int *apuntador = destinoPrueba;
+		while(*apuntador != -1){
+			printf("%u, ", *apuntador);
+			*apuntador++;
+
+		}
+
+
+
+
+	}
+
 

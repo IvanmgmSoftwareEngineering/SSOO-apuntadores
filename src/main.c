@@ -27,7 +27,9 @@ int main(void)
     //programa21();
 	//programa31();
 	//programa32();
-	programa33();
+	//programa33();
+	//programa34();
+	programa35();
 
 
     return 0;

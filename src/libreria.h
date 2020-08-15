@@ -16,6 +16,8 @@ char *mi_strcpy1 (const char *fuente, char *destino);
 char *mi_strcpy2 (const char *fuente, char *destino);
 void programa32(void);
 void programa33(void);
+void programa34(void);
+void programa35(void);
 
 
 #endif /* LIBRERIA_H_ */
