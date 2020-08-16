@@ -291,9 +291,38 @@ void programa31(void)
 			*apuntador++;
 
 		}
+	}
+
+	void programa41 (void){
+
+		long arreglo [80];
+		arreglo[3]= 2;
+		printf("%ld\n",arreglo[3]);
+		printf("%ld\n",3[arreglo]);
+
+	}
+
+	int my_strlen(const char *fuente){
+		int len;
+
+		len = 0;
+
+		while(*fuente++ != '\0'){
+			len++;
+		}
 
 
+		return len;
+	}
 
+	void programa42(void){
+
+		char fuente1 [80]= "12345";
+		char fuente2 [80];
+		//printf("El tamaño del arreglo cuadno lo hemos declarado con tamaño 80: %u\n",my_strlen(fuente));
+		//fuente = "12345";
+		printf("El tamaño del arreglo fuente1 cuando lo hemos inicializado a 12345: %u\n",my_strlen(fuente1));
+		printf("El tamaño del arreglo fuente2 solo lo hemos declarado con un espacio 80: %u\n",my_strlen(fuente2));
 
 	}
 
