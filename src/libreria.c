@@ -319,11 +319,36 @@ void programa31(void)
 
 		char fuente1 [80]= "12345";
 		char fuente2 [80];
-		//printf("El tamaño del arreglo cuadno lo hemos declarado con tamaño 80: %u\n",my_strlen(fuente));
-		//fuente = "12345";
 		printf("El tamaño del arreglo fuente1 cuando lo hemos inicializado a 12345: %u\n",my_strlen(fuente1));
 		printf("El tamaño del arreglo fuente2 solo lo hemos declarado con un espacio 80: %u\n",my_strlen(fuente2));
 
 	}
+
+	char *my_strcat(const char *fuente1,const char *fuente2, char *resultado){
+		//Concatena la cadena fuente1 y la cadena fuente2 en ese oreden
+
+
+			while(*fuente1 != '\0'){
+				*resultado++=*fuente1++;
+			}
+			while(*fuente2 != '\0'){
+				*resultado++=*fuente2++;
+			}
+			*resultado = '\0';
+
+
+			return resultado;
+		}
+
+		void programa43(void){
+
+			char fuente1 [80]= "01234";
+			char fuente2 [80]= "56789";
+			char resultado [80];
+			my_strcat(fuente1,fuente2, resultado);
+			puts(resultado);
+		}
+
+
 
 

@@ -31,7 +31,8 @@ int main(void)
 	//programa34();
 	//programa35();
 	//programa41();
-	programa42();
+	//programa42();
+	programa43();
 
 
     return 0;

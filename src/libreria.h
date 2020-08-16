@@ -21,6 +21,8 @@ void programa35(void);
 void programa41 (void);
 int my_strlen(const char *fuente);
 void programa42(void);
+char *my_strcat(const char *fuente1,const char *fuente2,char *resultado);
+void programa43(void);
 
 
 #endif /* LIBRERIA_H_ */
