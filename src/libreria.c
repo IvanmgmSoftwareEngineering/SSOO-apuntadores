@@ -349,6 +349,37 @@ void programa31(void)
 			puts(resultado);
 		}
 
+		int my_strchr1(const char *fuente1, const char caracterBuscado){
+
+					int posicion = -1;
+					int contador = 0;
+
+
+					while(*fuente1 != '\0'){
+						if(*fuente1 == caracterBuscado){
+							posicion = contador;
+							return posicion;
+						}
+						contador++;
+						*fuente1++;
+					}
+
+
+					return posicion;
+				}
+
+		void programa44(void){
+
+			char fuente1 [80]= "Hello world";
+			char caracterBuscado = 'o';
+			int posicion;
+			printf("el valor de posicion es: %u\n",posicion);
+			char resultado [80];
+			posicion = my_strchr1(fuente1, caracterBuscado);
+			printf("el valor de posicion es: %u\n",posicion);
+			printf("La posición del caracter -%c- dentro de la cadena -%s- es: %u\n",caracterBuscado,fuente1,posicion);
+		}
+
 
 
 

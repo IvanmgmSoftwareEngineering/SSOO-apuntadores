@@ -23,6 +23,8 @@ int my_strlen(const char *fuente);
 void programa42(void);
 char *my_strcat(const char *fuente1,const char *fuente2,char *resultado);
 void programa43(void);
+int my_strchr(const char *fuente1, const char caracterBuscado);
+void programa44(void);
 
 
 #endif /* LIBRERIA_H_ */
