@@ -351,7 +351,7 @@ void programa31(void)
 
 		int my_strchr1(const char *fuente1, const char caracterBuscado){
 
-					int posicion = -1;
+					int posicion = NULL;
 					int contador = 0;
 
 
@@ -378,6 +378,51 @@ void programa31(void)
 			posicion = my_strchr1(fuente1, caracterBuscado);
 			printf("el valor de posicion es: %u\n",posicion);
 			printf("La posición del caracter -%c- dentro de la cadena -%s- es: %u\n",caracterBuscado,fuente1,posicion);
+		}
+
+		const char *my_strchr2(const char *fuente1, int caracterBuscado){
+
+							char *posicion = NULL;
+							int contador = 0;
+							posicion = fuente1;
+
+
+							while(*posicion != '\0'){
+								if(*posicion == (char)caracterBuscado){
+									return posicion;
+								}
+								contador++;
+								*posicion++;
+							}
+
+
+							return posicion;
+						}
+
+		void programa45(void){
+
+				char fuente1 [80]= "Hello world";
+				char caracterBuscado = 'o';
+				char *apuntador;
+				char resultado [80];
+				apuntador = my_strchr2(fuente1, caracterBuscado);
+				printf("la direccion de fuente1[0] es: %p\n",(void*)fuente1);
+				printf("el contenifo de fuente1]0] de fuente1[0] es: %c\n",*fuente1);
+				printf("la direccion de apuntador es: %p\n",(void*)apuntador);
+				printf("el contenifo de apuntador es: %c\n",*apuntador);
+
+				if(apuntador == NULL){
+
+					printf("El caracter -%c- dentro de la cadena -%s- no ha sido encontrado: %p \n",caracterBuscado,fuente1,apuntador);
+
+				}else{
+
+					printf("La posición del caracter -%c- dentro de la cadena -%s- es: %u\n",caracterBuscado,fuente1,apuntador - fuente1);
+					printf("La subcadena a partir del caracter encontrado -%c- es: %s\n",caracterBuscado,apuntador);
+
+
+				}
+
 		}
 
 
