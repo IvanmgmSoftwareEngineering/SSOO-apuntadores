@@ -7,6 +7,7 @@
 
 
 #include <stdio.h>
+#include <string.h>
 #include "libreria.h"
 void ejemplo1 (void){
 
@@ -424,6 +425,581 @@ void programa31(void)
 				}
 
 		}
+
+		struct ficha{
+			char nombre [20];
+			char apellido[20];
+			char dni[20];
+			int edad;
+			float salario;
+		};
+
+
+		void programa51 (void){
+
+			int contadorPosicion;
+
+			struct ficha ficha1;
+			struct ficha ficha2;
+			struct ficha ficha3;
+
+			strcpy(ficha1.nombre,"Jhon");
+			strcpy(ficha1.apellido,"Arroba");
+			strcpy(ficha1.dni, "54223543A");
+			ficha1.edad = 30;
+			ficha1.salario= 1050.10;
+
+			strcpy(ficha2.nombre,"Juan");
+			strcpy(ficha2.apellido,"Fugter");
+			strcpy(ficha2.dni, "26112383P");
+			ficha2.edad = 41;
+			ficha2.salario= 1075.15;
+
+			strcpy(ficha3.nombre,"Pepe");
+			strcpy(ficha3.apellido,"Mitocondria");
+			strcpy(ficha3.dni, "34632436V");
+			ficha3.edad = 55;
+			ficha3.salario= 1100.20;
+
+			struct ficha baseDatosFichas [100];
+			baseDatosFichas[0] = ficha1;
+			baseDatosFichas[1] = ficha2;
+			baseDatosFichas[2] = ficha3;
+
+			contadorPosicion = 3;
+
+			printf( "Nuevo empleado pulse 'n': \n" );
+			printf( "Mostar lista de empleados pulse 'l': \n" );
+			printf( "Busca empleado por dni pulse 's': \n" );
+			printf( "Finalizar pulse 'e': \n" );
+			printf( "\n" );
+			printf( "Introduzca la opción: " );
+
+
+			char entradaUsusario1;
+			scanf("%c",&entradaUsusario1);
+			while (getchar() != '\n');
+
+			printf( "\n" );
+
+			while (entradaUsusario1 != 'e'){
+
+				if(entradaUsusario1== 'n'){
+
+					printf( "\n" );
+					printf( "-- Introduzca los datos del nuevo empleado --\n" );
+					printf( "\n" );
+					printf( "Nombre: " );
+					scanf("%[^\n]",&baseDatosFichas[contadorPosicion].nombre);
+					printf( "Apellido: " );
+					scanf("%s",&baseDatosFichas[contadorPosicion].apellido);
+					printf( "DNI: " );
+					scanf("%s",&baseDatosFichas[contadorPosicion].dni);
+					printf( "Edad: " );
+					scanf( "%i", &baseDatosFichas[contadorPosicion].edad );
+					printf( "Salario: " );
+					scanf( "%f", &baseDatosFichas[contadorPosicion].salario );
+
+					while(getchar()!= '\n');	/* Vacía el buffer de entrada */
+
+					contadorPosicion++;
+
+					printf( "Empleado almacenado con éxito en la base de datos\n" );
+					printf( "-------------------------------------------------\n" );
+					printf( "\n" );
+
+					printf( "Nuevo empleado pulse 'n': \n" );
+					printf( "Mostar lista de empleados pulse 'l': \n" );
+					printf( "Busca empleado por dni pulse 's': \n" );
+					printf( "Finalizar pulse 'e': \n" );
+					printf( "\n" );
+					printf( "Introduzca la opción deseada: " );
+					scanf("%c",&entradaUsusario1);
+					printf( "\n" );
+					while(getchar()!= '\n');	/* Vacía el buffer de entrada */
+
+				}else if(entradaUsusario1 == 'l'){
+					printf( "\n" );
+					printf( "-- Lista con todos los empleados, en total hay %i empleados en plantilla --\n",contadorPosicion+1 );
+					printf( "\n" );
+					int i;
+					for( i=0; i<contadorPosicion; i++ ) {
+							printf( "\n" );
+							printf( "Empleado %i \n ", i+1 );
+							printf( "\n" );
+							printf( "  Nombre:    %s \n ", baseDatosFichas[i].nombre );
+							printf( " Apellido:  %s \n ", baseDatosFichas[i].apellido );
+							printf( " DNI:       %s \n", baseDatosFichas[i].dni );
+							printf( "  Edad:      %i\n" ,baseDatosFichas[i].edad );
+							printf( "  Salario:   %f\n" ,baseDatosFichas[i].salario );
+							printf( "--------------------------------------------\n" );
+							printf( "\n" );
+					}
+
+					printf( "--FIN LISTA EMPLEADOS --\n" );
+					printf( "---------------------------------------------------\n" );
+					printf( "\n" );
+
+					printf( "Nuevo empleado pulse 'n': \n" );
+					printf( "Mostar lista de empleados pulse 'l': \n" );
+					printf( "Busca empleado por dni pulse 's': \n" );
+					printf( "Finalizar pulse 'e': \n" );
+					printf( "\n" );
+					printf( "Introduzca la opción deseada: " );
+					scanf("%c",&entradaUsusario1);
+					printf( "\n" );
+					while(getchar()!= '\n');	/* Vacía el buffer de entrada */
+
+				}else if(entradaUsusario1=='s'){
+					printf( "\n" );
+					printf( "-- Búsqueda de un empleado por número de DNI --\n",contadorPosicion+1 );
+					printf( "\n" );
+
+					char auxDNI[20];
+					printf( "Introduzca el DNI del empleado que desea buscar: " );
+					scanf("%s",&auxDNI);
+					while(getchar()!= '\n');
+					printf( "\n" );
+
+					int i;
+					int encontrado= 0; // 0 = FALSE, 1=TRUE
+					int posicionEncontrado;
+					for( i=0; i<contadorPosicion; i++ ) {
+						if(encontrado ==0){
+							if(strcmp(auxDNI,baseDatosFichas[i].dni)==0){
+								encontrado = 1;
+								posicionEncontrado = i;
+							}
+						}
+
+					}
+
+					if(encontrado == 0){
+						printf( "No hay ningún empleado con el número de DNI %s almacenado en la Base de Datos \n ", auxDNI );
+						printf( "\n" );
+						printf( "---------------------------------------------------------------------------------\n" );
+
+					}else{
+						printf( "Empleado encontrado. A continuación se muestra la ficha del empleado con número de DNI %s \n ", auxDNI );
+						printf( "\n" );
+						printf( "Empleado almacenado en la posicón %i de la Base de Datos \n ", posicionEncontrado );
+						printf( "\n" );
+						printf( "  Nombre:    %s \n ", baseDatosFichas[posicionEncontrado].nombre );
+						printf( " Apellido:  %s \n ", baseDatosFichas[posicionEncontrado].apellido );
+						printf( " DNI:       %s \n", baseDatosFichas[posicionEncontrado].dni );
+						printf( "  Edad:      %i\n" ,baseDatosFichas[posicionEncontrado].edad );
+						printf( "  Salario:   %f\n" ,baseDatosFichas[posicionEncontrado].salario );
+						printf( "--------------------------------------------\n" );
+						printf( "\n" );
+
+						printf( "Para borrar al empleado de la base de datos pulse 'r' \n" );
+						printf( "Para modificar algún dato del empleado pulse 'm' \n" );
+						printf( "Para salir pulse 'e' \n" );
+						printf( "\n" );
+						printf( "Introduzca la opción deseada: ");
+						char entradaUsusario2;
+						scanf("%c",&entradaUsusario2);
+						while(getchar()!= '\n');
+						printf( "\n" );
+						printf( "\n" );
+
+
+						while (entradaUsusario2 != 'e'){
+
+
+
+							 if (entradaUsusario2 == 'r'){
+
+								struct ficha auxBaseDatos[100];
+
+
+								int j;
+								int k=0;
+								for( j=posicionEncontrado; j<contadorPosicion-1; j++ ) {
+
+										baseDatosFichas[j]=baseDatosFichas[j+1];
+
+								}
+								baseDatosFichas[contadorPosicion-1]=baseDatosFichas[contadorPosicion];
+
+								contadorPosicion--;
+
+								printf( "\n" );
+								printf( "El empleado con número de DNI %s ha sido borrado de la Base de Datos ", auxDNI );
+								printf( "\n" );
+								printf( "-----------------------------------------------------\n" );
+								printf( "\n" );
+								entradaUsusario2 ='e';
+
+							}else if (entradaUsusario2 == 'm'){
+								printf( "  Para modificar el nombre pulse   'n' \n" );
+								printf( "  Para modificar el apellido pulse 's' \n" );
+								printf( "  Para modificar el dni pulse      'i' \n" );
+								printf( "  Para modificar el edad pulse     'a' \n" );
+								printf( "  Para modificar el salario pulse  'm' \n" );
+								printf( "  Para salir pulse                 'e' \n" );
+								printf( "\n" );
+								printf( "  Introduzca la opción deseada: " );
+								char entradaUsusario3;
+								scanf("%c",&entradaUsusario3);
+								while(getchar()!= '\n');
+								printf( "\n" );
+
+								if(entradaUsusario3=='e'){
+									entradaUsusario2 = 'e';
+								}
+
+								while (entradaUsusario3 != 'e'){
+									if(entradaUsusario3=='n'){
+										printf( "\n" );
+										printf( "El nombre actual del empleado con número de DNI %s es %s \n",auxDNI,baseDatosFichas[posicionEncontrado].nombre );
+										printf( "\n" );
+										printf( "Introduzca el nuevo nombre: ");
+										char entradaUsuario4[20];
+										scanf("%[^\n]",&entradaUsuario4);
+										while(getchar()!= '\n');
+										printf( "\n" );
+										printf( "\n" );
+										printf( "El nuevo nombre introducido es: %s \n ",entradaUsuario4 );
+										printf( " Pulse 'y' para guardad  \n" );
+										printf( " Pulse 'n' para no guardar y volver atrás  \n" );
+										printf( " Pulse 'e' para salir sin guardar  \n" );
+										printf( "\n" );
+										printf( " Introduzca su selección: " );
+										char entradaUsuario5;
+										scanf("%c",&entradaUsuario5);
+										while(getchar()!= '\n');
+										printf( "\n" );
+										printf( "\n" );
+
+										if(entradaUsuario5 == 'y'){
+											strcpy(baseDatosFichas[posicionEncontrado].nombre, entradaUsuario4);
+											printf( "\n" );
+											printf( "La ficha ha sido modificada con éxito" );
+											printf( "\n" );
+											printf( "   Nombre:   %s \n ", baseDatosFichas[posicionEncontrado].nombre );
+											printf( "  Apellido: %s \n ", baseDatosFichas[posicionEncontrado].apellido );
+											printf( "  DNI:      %s \n", baseDatosFichas[posicionEncontrado].dni );
+											printf( "   Edad:      %i\n" ,baseDatosFichas[posicionEncontrado].edad );
+											printf( "   Salario:   %f\n" ,baseDatosFichas[posicionEncontrado].salario );
+											printf( "--------------------------------------------\n" );
+											printf( "\n" );
+											entradaUsusario3='e';
+											entradaUsusario2 = 'e';
+
+										}else if (entradaUsuario5 == 'n'){
+
+
+										}else if (entradaUsuario5 == 'e'){
+											entradaUsusario3='e';
+											entradaUsusario2 = 'e';
+
+										}else{
+											printf( "\n" );
+											printf( "ERROR: la opción seleccionada no está disponible. Por favor inténtelo de nuevo. \n" );
+											printf( "----------\n" );
+											printf( "El nombre actual del empleado con número de DNI %s es %s \n",auxDNI,baseDatosFichas[posicionEncontrado].nombre );
+											printf( "Introoduzca el nuevo nombre: ");
+											scanf("%[^\n]",&entradaUsuario4);
+											while(getchar()!= '\n');
+											printf( "\n" );
+											printf( "\n" );
+										}
+
+
+									}else if (entradaUsusario3=='s'){
+										printf( "\n" );
+										printf( "El apellido actual del empleado con número de DNI %s es %s \n",auxDNI,baseDatosFichas[posicionEncontrado].apellido );
+										printf( "\n" );
+										printf( "Introoduzca el nuevo apellido: ");
+										char entradaUsuario4[20];
+										scanf("%s",&entradaUsuario4);
+										while(getchar()!= '\n');
+										printf( "\n" );
+										printf( "\n" );
+										printf( "El nuevo apellido introducido es: %s \n ",entradaUsuario4 );
+										printf( "Pulse 'y' para guardad\n " );
+										printf( "Pulse 'n' para guardad\n  " );
+										printf( "Pulse 'e' para salir sin guardad\n  " );
+										printf( "Introduzca su selección: : " );
+										char entradaUsuario5;
+										scanf("%c",&entradaUsuario5);
+										while(getchar()!= '\n');
+										printf( "\n" );
+
+										if(entradaUsuario5 == 'y'){
+											strcpy(baseDatosFichas[posicionEncontrado].apellido, entradaUsuario4);
+											printf( "\n" );
+											printf( "La ficha ha sido modificada con éxito" );
+											printf( "\n" );
+											printf( "  Nombre: %s \n ", baseDatosFichas[posicionEncontrado].nombre );
+											printf( "  Apellido: %s \n ", baseDatosFichas[posicionEncontrado].apellido );
+											printf( "  DNI: %s \n", baseDatosFichas[posicionEncontrado].dni );
+											printf( "  Edad: %i\n" ,baseDatosFichas[posicionEncontrado].edad );
+											printf( "  Salario: %f\n" ,baseDatosFichas[posicionEncontrado].salario );
+											printf( "--------------------------------------------\n" );
+											printf( "\n" );
+											entradaUsusario3='e';
+											entradaUsusario2 = 'e';
+
+										}else if (entradaUsuario5 == 'n'){
+
+
+										}else if (entradaUsuario5 == 'e'){
+											entradaUsusario3='e';
+											entradaUsusario2 = 'e';
+
+										}else{
+											printf( "\n" );
+											printf( "ERROR: la opción seleccionada no está disponible. Por favor inténtelo de nuevo. \n" );
+											printf( "----------\n" );
+											printf( "El apellido actual del empleado con número de DNI %s es %s \n",auxDNI,baseDatosFichas[posicionEncontrado].apellido );
+											printf( "Introoduzca el nuevo apellido: ");
+											scanf("%s",&entradaUsuario4);
+											while(getchar()!= '\n');
+											printf( "\n" );
+										}
+
+									}else if(entradaUsusario3=='i'){
+										printf( "\n" );
+																				printf( "El DNI actual del empleado con número de DNI %s es %s \n",auxDNI,baseDatosFichas[posicionEncontrado].dni );
+																				printf( "Introoduzca el nuevo DNI: ");
+																				char entradaUsuario4[20];
+																				scanf("%s",&entradaUsuario4);
+																				while(getchar()!= '\n');
+																				printf( "\n" );
+																				printf( "El nuevo DNI introducido es: %s\n",entradaUsuario4 );
+																				printf( "Pulse 'y' para guardad\n" );
+																				printf( "Pulse 'n' para guardad\n" );
+																				printf( "Pulse 'e' para salir sin guardad\n" );
+																				printf( "Introduzca su selección: : " );
+																				char entradaUsuario5;
+																				scanf("%c",&entradaUsuario5);
+																				while(getchar()!= '\n');
+																				printf( "\n" );
+
+																				if(entradaUsuario5 == 'y'){
+																					strcpy(baseDatosFichas[posicionEncontrado].dni, entradaUsuario4);
+																					printf( "\n" );
+																					printf( "La ficha ha sido modificada con éxito" );
+																					printf( "\n" );
+																					printf( "  Nombre: %s \n ", baseDatosFichas[posicionEncontrado].nombre );
+																					printf( "  Apellido: %s \n ", baseDatosFichas[posicionEncontrado].apellido );
+																					printf( "  DNI: %s \n", baseDatosFichas[posicionEncontrado].dni );
+																					printf( "  Edad: %i\n" ,baseDatosFichas[posicionEncontrado].edad );
+																					printf( "  Salario: %f\n" ,baseDatosFichas[posicionEncontrado].salario );
+																					printf( "--------------------------------------------\n" );
+																					printf( "\n" );
+																					entradaUsusario3='e';
+																					entradaUsusario2 = 'e';
+
+																				}else if (entradaUsuario5 == 'n'){
+
+
+																				}else if (entradaUsuario5 == 'e'){
+																					entradaUsusario3='e';
+																					entradaUsusario2 = 'e';
+
+																				}else{
+																					printf( "\n" );
+																					printf( "ERROR: la opción seleccionada no está disponible. Por favor inténtelo de nuevo. \n" );
+																					printf( "----------\n" );
+																					printf( "El dni actual del empleado con número de DNI %s es %s \n",auxDNI,baseDatosFichas[posicionEncontrado].dni );
+																					printf( "Introoduzca el nuevo DNI: ");
+																					scanf("%s",&entradaUsuario4);
+																					while(getchar()!= '\n');
+																					printf( "\n" );
+																				}
+
+									}else if (entradaUsusario3=='a'){
+										printf( "\n" );
+																				printf( "La edad actual del empleado con número de DNI %s es %i \n",auxDNI,baseDatosFichas[posicionEncontrado].edad );
+																				printf( "Introoduzca la nueva edad: ");
+																				int entradaUsuario4;
+																				scanf( "%i", &entradaUsuario4 );
+																				while(getchar()!= '\n');
+
+																				printf( "\n" );
+																				printf( "La nueva edad introducido es: %i \n ",entradaUsuario4 );
+																				printf( "Pulse 'y' para guardad\n  " );
+																				printf( "Pulse 'n' para guardad\n  " );
+																				printf( "Pulse 'e' para salir sin guardad\n  " );
+																				printf( "Introduzca su selección: " );
+																				char entradaUsuario5;
+																				scanf("%c",&entradaUsuario5);
+																				while(getchar()!= '\n');
+																				printf( "\n" );
+
+																				if(entradaUsuario5 == 'y'){
+																					baseDatosFichas[posicionEncontrado].edad = entradaUsuario4;
+																					printf( "\n" );
+																					printf( "La ficha ha sido modificada con éxito" );
+																					printf( "\n" );
+																					printf( "  Nombre: %s \n ", baseDatosFichas[posicionEncontrado].nombre );
+																					printf( "  Apellido: %s \n ", baseDatosFichas[posicionEncontrado].apellido );
+																					printf( "  DNI: %s \n", baseDatosFichas[posicionEncontrado].dni );
+																					printf( "  Edad: %i\n" ,baseDatosFichas[posicionEncontrado].edad );
+																					printf( "  Salario: %f\n" ,baseDatosFichas[posicionEncontrado].salario );
+																					printf( "--------------------------------------------\n" );
+																					printf( "\n" );
+																					entradaUsusario3='e';
+																					entradaUsusario2 = 'e';
+
+																				}else if (entradaUsuario5 == 'n'){
+
+
+																				}else if (entradaUsuario5 == 'e'){
+																					entradaUsusario3='e';
+																					entradaUsusario2 = 'e';
+
+																				}else{
+																					printf( "\n" );
+																					printf( "ERROR: la opción seleccionada no está disponible. Por favor inténtelo de nuevo. \n" );
+																					printf( "----------\n" );
+																					printf( "La edad actual del empleado con número de DNI %s es %i \n",auxDNI,baseDatosFichas[posicionEncontrado].edad );
+																					printf( "Introoduzca la nueva edad: ");
+																					scanf( "%i", &entradaUsuario4 );
+																					while(getchar()!= '\n');
+																					printf( "\n" );
+																				}
+
+
+
+									}else if(entradaUsusario3=='m'){
+										printf( "\n" );
+																				printf( "El salario actual del empleado con número de DNI %s es %f€ \n",auxDNI,baseDatosFichas[posicionEncontrado].salario );
+																				printf( "Introoduzca el nuevo salario: ");
+																				float entradaUsuario4;
+																				scanf( "%f", &entradaUsuario4 );
+																				while(getchar()!= '\n');
+																				printf( "\n" );
+																				printf( "El nuevo salario introducido es: %f\n  ",entradaUsuario4 );
+																				printf( "Pulse 'y' para guardad\n " );
+																				printf( "Pulse 'n' para guardad\n  " );
+																				printf( "Pulse 'e' para salir sin guardad\n  " );
+																				printf( "Introduzca su selección: : " );
+																				char entradaUsuario5;
+																				scanf("%s",&entradaUsuario5);
+																				while(getchar()!= '\n');
+																				printf( "\n" );
+
+																				if(entradaUsuario5 == 'y'){
+																					baseDatosFichas[posicionEncontrado].salario = entradaUsuario4;
+																					printf( "\n" );
+																					printf( "La ficha ha sido modificada con éxito" );
+																					printf( "\n" );
+																					printf( "  Nombre: %s \n ", baseDatosFichas[posicionEncontrado].nombre );
+																					printf( "  Apellido: %s \n ", baseDatosFichas[posicionEncontrado].apellido );
+																					printf( "  DNI: %s \n", baseDatosFichas[posicionEncontrado].dni );
+																					printf( "  Edad: %i\n" ,baseDatosFichas[posicionEncontrado].edad );
+																					printf( "  Salario: %f\n" ,baseDatosFichas[posicionEncontrado].salario );
+																					printf( "--------------------------------------------\n" );
+																					printf( "\n" );
+																					entradaUsusario3='e';
+																					entradaUsusario2 = 'e';
+
+																				}else if (entradaUsuario5 == 'n'){
+
+
+																				}else if (entradaUsuario5 == 'e'){
+																					entradaUsusario3='e';
+																					entradaUsusario2 = 'e';
+
+																				}else{
+																					printf( "\n" );
+																					printf( "ERROR: la opción seleccionada no está disponible. Por favor inténtelo de nuevo. \n" );
+																					printf( "----------\n" );
+																					printf( "El salario actual del empleado con número de DNI %s es %s \n",auxDNI,baseDatosFichas[posicionEncontrado].salario );
+																					printf( "Introoduzca el nuevo salario: ");
+																					scanf( "%f", &entradaUsuario4 );
+																					while(getchar()!= '\n');
+																					printf( "\n" );
+																				}
+
+
+
+
+
+									}else{
+										printf( "ERROR: la opción seleccionada no está disponible. Por favor inténtelo de nuevo. \n" );
+										printf( "----------\n" );
+										printf( "Para modificar el nombre pulse 'n' \n" );
+										printf( "Para modificar el apellido pulse 's' \n" );
+										printf( "Para modificar el dni pulse  'i' \n" );
+										printf( "Para modificar el edad pulse  'a' \n" );
+										printf( "Para modificar el salario pulse  'm' \n" );
+										printf( "Para salir pulse pulse  'e' \n" );
+										printf( "\n" );
+										printf( "Introduzca la opción deseada: " );
+										scanf( "%c", &entradaUsusario3);
+										while(getchar()!= '\n');
+										printf( "\n" );
+									}
+								}
+
+
+							}else{
+								printf( "ERROR: la opción seleccionada no está disponible. Por favor inténtelo de nuevo. \n" );
+								printf( "----------\n" );
+								printf( "Para borrar al empleado de la base de datos pulse 'r' \n" );
+								printf( "Para modificar algún dato del empleado pulse 'm' \n" );
+								printf( "Para salir pulse 'e' \n" );
+								printf( "\n" );
+								printf( "Introduzca la opción deseada: " );
+								scanf( "%c", &entradaUsusario2);
+								while(getchar()!= '\n');
+								printf( "\n" );
+
+							}
+
+
+
+
+
+
+						}
+
+
+
+
+					}
+
+					printf( " Nuevo empleado pulse 'n': \n" );
+					printf( " Mostar lista de empleados pulse 'l': \n" );
+					printf( " Busca empleado por dni pulse 's': \n" );
+					printf( " Finalizar pulse 'e': \n" );
+					printf( "\n" );
+					printf( " Introduzca la opción deseada: " );
+					scanf("%c",&entradaUsusario1);
+					printf( "\n" );
+					while(getchar()!= '\n');	/* Vacía el buffer de entrada */
+
+
+
+				}else{
+					printf( "ERROR: la opción seleccionada no está disponible. Por favor inténtelo de nuevo1. \n" );
+					printf( "----------\n" );
+					printf( "\n" );
+					printf( "Nuevo empleado pulse 'n': \n" );
+					printf( "Mostar lista de empleados pulse 'l': \n" );
+					printf( "Busca empleado por dni pulse 's': \n" );
+					printf( "Finalizar pulse 'e': \n" );
+					printf( "\n" );
+					printf( "Introduzca la opción deseada: " );
+					scanf("%c",&entradaUsusario1);
+					while(getchar()!= '\n');	/* Vacía el buffer de entrada */
+					printf( "\n" );
+
+				}
+
+
+
+			}
+
+			printf( "FIN PROGRAMA Bye bye :) " );
+
+		}
+
 
 
 
